@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\Like;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-
+use App\Models\User;
 class LikeFactory extends Factory
 {
     /**
@@ -23,7 +23,9 @@ class LikeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id'=>function(){
+                return User::all()->random();
+            }
         ];
     }
 }
