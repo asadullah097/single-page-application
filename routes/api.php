@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 
-Route::get('/question','QuestionController@index');
+Route::apiResource('/question','QuestionController');
 /*
 |--------------------------------------------------------------------------
 | API Routes

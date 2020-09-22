@@ -1,37 +1,18 @@
 <?php
 
-namespace Database\Factories;
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Reply;
-use App\Models\Question;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
-class ReplyFactory extends Factory
-{
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Reply::class;
-
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
-    {
-        return [
-           'body'=>$this->faker->text,
-           'question_id'=>function(){
-            return Question::all()->random();
-          },
-           'user_id'=>function(){
-            return User::all()->random();
-        }
-        ];
-    }
-}
+$factory->define(App\Models\Reply::class, function (Faker $faker) {
+    return [
+        'body'=>$this->faker->text,
+        'question_id'=>function(){
+         return App\Models\Question::all()->random();
+       },
+        'user_id'=>function(){
+         return App\User::all()->random();
+     }
+     ];
+});

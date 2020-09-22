@@ -1,31 +1,16 @@
 <?php
 
-namespace Database\Factories;
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Like;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\User;
-class LikeFactory extends Factory
-{
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Like::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
-    {
-        return [
-            'user_id'=>function(){
-                return User::all()->random();
-            }
-        ];
-    }
-}
+
+use Faker\Generator as Faker;
+
+$factory->define(App\Models\Like::class, function (Faker $faker) {
+    return [
+        'user_id'=>function(){
+            return App\User::all()->random();
+        }
+    ];
+});

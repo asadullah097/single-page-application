@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use Illuminate\Http\Request;
-
 class QuestionController extends Controller
 {
     /**
@@ -14,7 +13,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        return Question::latest()->get();
     }
 
     
@@ -37,19 +36,10 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        return $question;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Question $question)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -71,6 +61,8 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $questio->delete();
+
+        return \response("Deleted",200);
     }
 }
