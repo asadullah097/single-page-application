@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    protected $guareded=[];
+    protected $guarded=[];
  
     public function getRoutekeyName(){
         return "slug";

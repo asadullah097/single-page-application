@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\CategoryResource;
+use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return CategoryResource::collection(Category::latest()->get());
     }
 
     /**
@@ -22,11 +24,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +33,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $category=new Category();
+
+         $category->name=$request->name;
+         $category->slug=Str::slug($request->name);
+         $category->save();
+         return response("cteated", Response::HTTP_CREATED);
     }
 
     /**
@@ -46,7 +49,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return new CategoryResource($category);
     }
 
     /**
@@ -55,11 +58,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -69,7 +68,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update([
+            'name'=>$request->name,
+            'slug'=>Str::slug($request->name)
+        ]);
+        return response('Update', Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -80,6 +83,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return \response("Deleted",200);
     }
 }

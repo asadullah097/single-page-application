@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 
+Route::apiResource('/category','CategoryController');
 Route::apiResource('/question','QuestionController');
 /*
 |--------------------------------------------------------------------------
