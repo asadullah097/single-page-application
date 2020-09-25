@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 
 Route::apiResource('/category','CategoryController');
 Route::apiResource('/question','QuestionController');
+
+Route::apiResource('/{question}/reply','ReplyController');
 /*
 |--------------------------------------------------------------------------
 | API Routes
