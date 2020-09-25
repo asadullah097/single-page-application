@@ -6,6 +6,9 @@ Route::apiResource('/category','CategoryController');
 Route::apiResource('/question','QuestionController');
 
 Route::apiResource('/{question}/reply','ReplyController');
+
+Route::post('/like/{reply}','LikeController@likeIt');
+Route::delete('/like/{reply}','LikeController@unlikeIt');
 /*
 |--------------------------------------------------------------------------
 | API Routes
