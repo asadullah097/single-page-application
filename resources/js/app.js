@@ -16,4 +16,5 @@ import router from './Router/router.js'
 const app = new Vue({
     vuetify : new Vuetify(),
     el: '#app',
+    router
 });
